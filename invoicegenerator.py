@@ -2,6 +2,7 @@ import pandas as pd
 import glob
 import fpdf
 from pathlib import Path
+from PIL import Image
 
 
 # To get the filepath from folders
@@ -51,10 +52,15 @@ for filepath in filepaths:
     pdf.cell(w=30, h=15, txt="", align="L", border=1)
     pdf.cell(w=30, h=15, txt=str(total_sum), align="L", border=1,ln=1)
 
+    image= Image.open("invoices/pythonhow.png")
+    resize_image=image.resize((50,50))
+    resize_image.save("invoices/resizedimagepythonhow.png")
+    print("Image resize successfully")
+
     pdf.set_font(family="Times", size=10, style="B")
     pdf.set_text_color(0, 0, 254)
     pdf.cell(w=30, h=15, txt=f"The amount due is: {total_sum} Rupees" , align="L",ln=1)
-    pdf.image("invoices/pythonhow.png")
+    pdf.image("invoices/resizedimagepythonhow.png")
 
 
 
